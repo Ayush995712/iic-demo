@@ -6,7 +6,7 @@ import Admin from "./pages/Admin";
 function App() {
   return (
     <Router>
-      <nav className="flex justify-center gap-6 bg-gray-800 text-white py-4 shadow">
+      <nav className="flex justify-center gap-6 text-white py-4 bg-linear-to-r from-purple-500 via-pink-500 to-orange-400 shadow-lg">
         <Link className="hover:text-blue-400 transition" to="/">Home</Link>
         <Link className="hover:text-blue-400 transition" to="/admin">Admin</Link>
       </nav>
