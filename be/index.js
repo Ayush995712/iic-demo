@@ -9,7 +9,7 @@ const admin_password = process.env.ADMIN_PASSWORD;
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ["https://iic-demo-fe.vercel.app"],
+  origin: ["https://iic-demo.vercel.app"],
   methods: ["GET", "POST"],
   credentials: true
 }));
@@ -56,5 +56,3 @@ app.get("/api/admin/users", async (req, res) => {
         })
     }
 })
-
-app.listen(3000)
