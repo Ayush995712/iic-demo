@@ -1,56 +1,24 @@
-import { useState } from 'react'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 
 function App() {
-  const [visible, setVisible] = useState(true);
-
-  function submit() {
-    setVisible(false);
-  }
-
   return (
-    <>
-      <div>
-        <div className="h-screen w-screen flex justify-center items-center box-border bg-black">
-            {visible ? (
-              <div className="bg-[#C75146] box-border px-16 py-8 rounded-lg text-white flex flex-col gap-2">
-                <div className="text-[#F7EDE2] rounded-2xl mb-5 flex justify-center items-center py-2">
-                    <h1 className="text-3xl font-bold font-serif">Credentials</h1>
-                </div>
-                <div className="flex flex-col gap-1">
-                    <div className="flex flex-col gap-0.5">
-                        <div className="bg-[#F1B5CB] text-[#595358] rounded-md box-border py-1 px-3">Username</div>
-                        <div>
-                            <input className="bg-[#DEC3BE] rounded-md border text-[#595358] py-1 px-3" type="text"></input>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-0.5">
-                        <div className="bg-[#F1B5CB] text-[#595358] rounded-md box-border py-1 px-3">Email</div>
-                        <div>
-                            <input className="bg-[#DEC3BE] rounded-md border text-[#595358] py-1 px-3" type="password"></input>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-0.5">
-                        <div className="bg-[#F1B5CB] text-[#595358] rounded-md box-border py-1 px-3">Password</div>
-                        <div>
-                            <input className="bg-[#DEC3BE] rounded-md border text-[#595358] py-1 px-3" type="password"></input>
-                        </div>
-                    </div>
-                    <div className="flex justify-center items-center box-border mt-2">
-                        <button className="cursor-pointer bg-[#F1B5CB] text-[#595358] rounded-3xl px-4 py-[5px]" onClick={submit}>Submit</button>
-                    </div>
-                </div>
-              </div>
-            ) : (
-              <div className='text-amber-50 h-screen w-screen'>
-                <h1 className='text-amber-100'>Thank You for submitting your credentials.</h1>
-                <button onClick={() => setVisible(true)}>Sign in as Admin</button>
-              </div>
-            )}
-        </div>
+    <Router>
+      <nav className="flex justify-center gap-6 bg-gray-800 text-white py-4 shadow">
+        <Link className="hover:text-blue-400 transition" to="/">Home</Link>
+        <Link className="hover:text-blue-400 transition" to="/admin">Admin</Link>
+      </nav>
+
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
       </div>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
