@@ -1,16 +1,40 @@
-import mongoose from 'mongoose';
+import express from "express"
 import dotenv from "dotenv"
+import cors from "cors"
+import { userModel } from "./db";
 
-mongoose.connect("");
+dotenv.config();
+const admin_username = process.env.ADMIN_USERNAME;
+const admin_password = process.env.ADMIN_PASSWORD;
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+app.post("/", async (req, res) => {
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
 
-const user = new Schema({
-    user_id: ObjectId,
-    username: {type: String, default: "Jon Doe", unique: true},
-    email: {type: String, unique: true},
-    password: {type: String},
+    try {
+        await userModel.create({
+            username, email, password
+        })
+        res.json({
+            message: "Credentials submitted"
+        })
+    } catch(e) {
+        res.status(400).json({
+            message: "Error while submitting credentials"
+        })
+    }
 })
 
-export const userModel = mongoose.model('Users', user);
+app.post("/admin", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    if(username == admin_username && password == admin_password) {
+
+    }
+})
+
+app.listen(3000)
