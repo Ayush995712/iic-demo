@@ -8,7 +8,10 @@ const admin_username = process.env.ADMIN_USERNAME;
 const admin_password = process.env.ADMIN_PASSWORD;
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["https://iic-demo-fe.vercel.app"],
+  methods: ["GET", "POST"],
+}));
 
 app.post("/api/users", async (req, res) => {
     const username = req.body.username;
