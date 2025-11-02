@@ -14,7 +14,7 @@ function Admin() {
     e.preventDefault();
     setIsLoggingIn(true);
     try {
-      const res = await fetch("http://localhost:3000/api/admin/login", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
@@ -35,7 +35,7 @@ function Admin() {
   };
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:3000/api/admin/users");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users`);
     const data = await res.json();
     setUsers(data);
   };

@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors({
   origin: ["https://iic-demo-fe.vercel.app"],
   methods: ["GET", "POST"],
+  credentials: true
 }));
 
 app.post("/api/users", async (req, res) => {
